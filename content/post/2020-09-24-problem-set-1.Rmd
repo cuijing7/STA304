@@ -18,6 +18,9 @@ library(dplyr)
 ```
 
 # Abstract
+
+test
+
 Using the phone survey from 2019 Canadian Election Study, we investigated whether the participants are satisfied with the performance of the federal government under Justin Trudeau. By plotting the response of the quenstionaire, we discover that $54.3\%$ of the participants is not satisfied with the performance. This suggests that Justin Trudeau will lost some votes in the new election.
 
 # Introduction
@@ -84,6 +87,7 @@ ggplot(data = new_data, aes(x = x_new, fill = x_new)) + geom_bar() + xlab("optio
     label = sprintf('%s (%.1f%%)', after_stat(count), after_stat(count / sum(count) * 100))),
     stat='count', 
     vjust = -1)
+
 ```
 
 # Discussion
