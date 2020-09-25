@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.75.1" />
+
+
+<title>The majority of Canadian citizen is not satisfied with the performance of the federal government under Justin Trudeau - Jingyi Cui&#39;s website</title>
+<meta property="og:title" content="The majority of Canadian citizen is not satisfied with the performance of the federal government under Justin Trudeau - Jingyi Cui&#39;s website">
+
+
+  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/rstudio">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">4 min read</span>
+    
+
+    <h1 class="article-title">The majority of Canadian citizen is not satisfied with the performance of the federal government under Justin Trudeau</h1>
+
+    
+    <span class="article-date">2020-09-24</span>
+    
+
+    <div class="article-content">
+      
+
+
+<div id="abstract" class="section level1">
+<h1>Abstract</h1>
+<p>Using the phone survey from 2019 Canadian Election Study, we investigated whether the participants are satisfied with the performance of the federal government under Justin Trudeau. By plotting the response of the quenstionaire, we discover that <span class="math inline">\(54.3\%\)</span> of the participants is not satisfied with the performance. This suggests that Justin Trudeau will lost some votes in the new election.</p>
+</div>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>We used the dataset of the phone survey from 2019 Canadian Election Study to investigate the satisfactory level of the adult Canadian citizens to the performance of the federal government under Justin Trudeau. From the study, we find that the majority find the performance to be unsatisfactory.</p>
+<p>I used <code>tidyverse</code>(<span class="citation">Wickham et al. (2019)</span>) package to analyse and plot data. After extracting the one variable that we are focusing on, I replaced the numeric value to the corresponding text response and plotted the distribution. I grouped “Refused” and “Don’t know” into one category - “NA”, as these two answers don’t have any preference and is not helpful for out study.</p>
+<p>Since the sampling population is significantly smaller than the target population, the accuracy of the study is not guaranteed. For further studies and more precise result, we should increase the sampling population and conduct a more detailed survey focusing on this topic.</p>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<p>The dataset we are using is the phone survey from 2019 Canadian Election Study. This study is to gather the Canadians’ attitudes and opinions during and after the 2019 federal election.
+Our target population is all adult citizen of Canada, with our sampling population be 4021 of Canadian adult citizens who resident in one of ten Canadian provinces with landlines or wireless telephones.
+Our sampling unit is one Canadian adult citizen.
+Our frame is Canadian citizens of 18 years old or older who resident in one of ten Canadian provinces.
+The method we use to sample our data is simple random sampling, random digit dialing to select the phone number, with the method of data collection are telephone interviews (Computer Assist Telephone Interview) and online surveys.
+The dataset is the numeric value of the response from the quanstionaire.</p>
+<pre><code>## Rows: 4,021
+## Columns: 1
+## $ q13 &lt;dbl+lbl&gt; 2, 2, 2, 2, 4, 4, 4, 2, 3, 2, 3, 3, 2, 2, 1, 2, 2, 2, 2, 2, 2…</code></pre>
+<p>Our interest from this survey is from question 13 of the questionnaire, which is whether the participants are satisfied with the performance of the federal government under Justin Trudeau.
+The dataset contains the numeric code of the resopnses to the quenstionaire by the following:<br />
+</p>
+<blockquote>
+<p>1 - Very satisfied</p>
+</blockquote>
+<blockquote>
+<p>2 - Fairly satisfied</p>
+</blockquote>
+<blockquote>
+<p>3 - Not really satisfied</p>
+</blockquote>
+<blockquote>
+<p>4 - Not satisfied at all</p>
+</blockquote>
+<blockquote>
+<p>-8 - Refused</p>
+</blockquote>
+<blockquote>
+<p>-9 - Don’t know</p>
+</blockquote>
+<p>I used package <code>cesR</code>(<span class="citation">Hodgetts and Alexander (2020)</span>) to download dataset and <code>tidyverse</code>(<span class="citation">Wickham et al. (2019)</span>) to process data as well as plotting. The result is shown blow.</p>
+<p><img src="/post/2020-09-24-problem-set-1_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="discussion" class="section level1">
+<h1>Discussion</h1>
+<p>From the graph, we notice that <span class="math inline">\(4.7\%\)</span> of the participants is verysatisfied with the performance of the federal government under Justin Trudeau, and <span class="math inline">\(39.4\%\)</span> of the participants is fairly satisfied. However, a majority of the participants find the performance of the government to be unsatisfactory with <span class="math inline">\(29.1\%\)</span> not very satisfied and <span class="math inline">\(25.2\%\)</span> not satisfied at all. Based on the result, we can see that although the most of the participant find they are fairly satisfied with the government’s performance, overall it’s performance under Justin Trudeau is below expectation.</p>
+</div>
+<div id="weakness" class="section level1">
+<h1>Weakness</h1>
+<p>The survey is conducted on 4021 Canadian adult citizens whi resident in one of ten Canadian provinces with landlines or wireless telephones. Comparing to the 3 million adult population of Canada, it’s only <span class="math inline">\(0.134\%\)</span> of the target population. Therefore the result of the survey may not reflect the true situation. To improve the accuracy, we can conduct a survey focusing on this topic and increase the sampling population size.</p>
+</div>
+<div id="reference" class="section level1">
+<h1>Reference</h1>
+<p>Stephenson, Laura B; Harell, Allison; Rubenson, Daniel; Loewen, Peter John, 2020, “2019 Canadian Election Study - Phone Survey Technical Report.pdf”, 2019 Canadian Election Study - Phone Survey, <a href="https://doi.org/10.7910/DVN/8RHLG1/1PBGR3" class="uri">https://doi.org/10.7910/DVN/8RHLG1/1PBGR3</a>, Harvard Dataverse, V1</p>
+<p>Stephenson, Laura B; Harell, Allison; Rubenson, Daniel; Loewen, Peter John, 2020, “2019 Canadian Election Study - Phone Survey”, <a href="https://doi.org/10.7910/DVN/8RHLG1" class="uri">https://doi.org/10.7910/DVN/8RHLG1</a>, Harvard Dataverse, V1, UNF:6:eyR28qaoYlHj9qwPWZmmVQ== [fileUNF]</p>
+<div id="refs" class="references">
+<div id="ref-citecesR">
+<p>Hodgetts, Paul A., and Rohan Alexander. 2020. <em>CesR: Access the Ces Datasets a Little Easier.</em></p>
+</div>
+<div id="ref-citetidyverse">
+<p>Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.</p>
+</div>
+</div>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+
