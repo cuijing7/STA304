@@ -62,7 +62,7 @@
 
   <article class="article">
     
-    <span class="article-duration">1 min read</span>
+    <span class="article-duration">2 min read</span>
     
 
     <h1 class="article-title">support code</h1>
@@ -85,10 +85,24 @@
 ## LINK: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/8RHLG1</code></pre>
 <pre class="r"><code>data &lt;- ces2019_phone</code></pre>
 <pre class="r"><code>new_data &lt;- na.omit(data[, &quot;q13&quot;])
-glimpse(new_data)</code></pre>
+tibble(glimpse(new_data))</code></pre>
 <pre><code>## Rows: 4,021
 ## Columns: 1
 ## $ q13 &lt;dbl+lbl&gt; 2, 2, 2, 2, 4, 4, 4, 2, 3, 2, 3, 3, 2, 2, 1, 2, 2, 2, 2, 2, 2…</code></pre>
+<pre><code>## # A tibble: 4,021 x 1
+##                             q13
+##                       &lt;dbl+lbl&gt;
+##  1 2 [(2) Fairly satisfied]    
+##  2 2 [(2) Fairly satisfied]    
+##  3 2 [(2) Fairly satisfied]    
+##  4 2 [(2) Fairly satisfied]    
+##  5 4 [(4) Not satisfied at all]
+##  6 4 [(4) Not satisfied at all]
+##  7 4 [(4) Not satisfied at all]
+##  8 2 [(2) Fairly satisfied]    
+##  9 3 [(3) Not very satisfied]  
+## 10 2 [(2) Fairly satisfied]    
+## # … with 4,011 more rows</code></pre>
 <pre class="r"><code>x &lt;- unlist(new_data, use.names = FALSE)
 x_new &lt;- &quot;&quot;
 
@@ -107,7 +121,7 @@ x_new &lt;- factor(x_new, levels = c(&quot;Very satisfied&quot;, &quot;Fairly sa
     label = sprintf(&#39;%s (%.1f%%)&#39;, after_stat(count), after_stat(count / sum(count) * 100))),
     stat=&#39;count&#39;, 
     vjust = -1)</code></pre>
-<p><img src="/post/support_code_files/figure-html/plot-1.png" width="672" /></p>
+<p><img src="/post/support_code_files/figure-html/plot-1.png" width="768" /></p>
 
     </div>
   </article>

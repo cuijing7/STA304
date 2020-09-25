@@ -9,7 +9,7 @@ tags: ["R Markdown", "plot"]
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(visdat)
 library(cesR)
@@ -66,7 +66,7 @@ The dataset contains the numeric code of the resopnses to the quenstionaire by t
 
 I used package `cesR`(@citecesR) to download dataset and `tidyverse`(@citetidyverse) to process data as well as plotting. The result is shown blow.
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.width=8, fig.height=6}
 x <- unlist(new_data, use.names = FALSE)
 x_new <- ""
 
@@ -99,8 +99,7 @@ The survey is conducted on 4021  Canadian adult citizens whi resident in one of 
 
 # Reference
 
-Supporting code and data availiable at https://github.com/cuijing7/STA304/blob/master/content/post/2020-09-24-problem-set-1.Rmd
-
+Supporting code and data availiable at https://github.com/cuijing7/STA304/blob/master/content/post/support_code.Rmd
 
 Stephenson, Laura B; Harell, Allison; Rubenson, Daniel; Loewen, Peter John, 2020, "2019 Canadian Election Study - Phone Survey Technical Report.pdf", 2019 Canadian Election Study - Phone Survey, https://doi.org/10.7910/DVN/8RHLG1/1PBGR3, Harvard Dataverse, V1
 

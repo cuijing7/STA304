@@ -21,7 +21,7 @@ data <- ces2019_phone
 
 ```{r view_data}
 new_data <- na.omit(data[, "q13"])
-glimpse(new_data)
+tibble(glimpse(new_data))
 ```
 
 ```{r modify_variable}
@@ -39,7 +39,7 @@ for (i in 1:length(x)) {
 x_new <- factor(x_new, levels = c("Very satisfied", "Fairly satisfied", "Not very satisfied", "Not satisfied at all", NA))
 ```
 
-```{r plot}
+```{r plot, fig.width=8, fig.height=6}
 ggplot(data = new_data, aes(x = x_new, fill = x_new)) + 
   geom_bar() + xlab("options") + labs(fill = "options") +
   geom_text(aes(
