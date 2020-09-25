@@ -1,0 +1,50 @@
+---
+title: "support code"
+author: "Jingyi Cui"
+date: "25/09/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(visdat)
+library(cesR)
+library(skimr)
+library(dplyr)
+```
+
+```{r load_data}
+get_ces("ces2019_phone")
+data <- ces2019_phone
+```
+
+```{r view_data}
+new_data <- na.omit(data[, "q13"])
+glimpse(new_data)
+```
+
+```{r modify_variable}
+x <- unlist(new_data, use.names = FALSE)
+x_new <- ""
+
+for (i in 1:length(x)) {
+  if (x[i] == 1) {x_new[i] <- "Very satisfied"} else
+    if (x[i] == 2) {x_new[i] <- "Fairly satisfied"} else
+      if (x[i] == 3) {x_new[i] <- "Not very satisfied"} else
+        if (x[i] == 4) {x_new[i] <- "Not satisfied at all"} else
+        {x_new[i] <- NA}
+}
+
+x_new <- factor(x_new, levels = c("Very satisfied", "Fairly satisfied", "Not very satisfied", "Not satisfied at all", NA))
+```
+
+```{r plot}
+ggplot(data = new_data, aes(x = x_new, fill = x_new)) + 
+  geom_bar() + xlab("options") + labs(fill = "options") +
+  geom_text(aes(
+    label = sprintf('%s (%.1f%%)', after_stat(count), after_stat(count / sum(count) * 100))),
+    stat='count', 
+    vjust = -1)
+
+```

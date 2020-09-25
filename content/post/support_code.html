@@ -1,0 +1,42 @@
+---
+title: "support code"
+author: "Jingyi Cui"
+date: "25/09/2020"
+output: html_document
+---
+
+
+
+<pre class="r"><code>get_ces(&quot;ces2019_phone&quot;)</code></pre>
+<pre><code>## TO CITE THIS SURVEY FILE:
+## 
+## - Stephenson, Laura B; Harell, Allison; Rubenson, Daniel; Loewen, Peter John, 2020, &#39;2019 Canadian Election Study - Phone Survey&#39;, https://doi.org/10.7910/DVN/8RHLG1, Harvard Dataverse, V1, UNF:6:eyR28qaoYlHj9qwPWZmmVQ== [fileUNF]
+## 
+## - Stephenson, Laura, Allison Harrel, Daniel Rubenson and Peter Loewen. Forthcoming. &#39;Measuring Preferences and Behaviour in the 2019 Canadian Election Study,&#39; Canadian Journal of Political Science.
+## 
+## LINK: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/8RHLG1</code></pre>
+<pre class="r"><code>data &lt;- ces2019_phone</code></pre>
+<pre class="r"><code>new_data &lt;- na.omit(data[, &quot;q13&quot;])
+glimpse(new_data)</code></pre>
+<pre><code>## Rows: 4,021
+## Columns: 1
+## $ q13 &lt;dbl+lbl&gt; 2, 2, 2, 2, 4, 4, 4, 2, 3, 2, 3, 3, 2, 2, 1, 2, 2, 2, 2, 2, 2…</code></pre>
+<pre class="r"><code>x &lt;- unlist(new_data, use.names = FALSE)
+x_new &lt;- &quot;&quot;
+
+for (i in 1:length(x)) {
+  if (x[i] == 1) {x_new[i] &lt;- &quot;Very satisfied&quot;} else
+    if (x[i] == 2) {x_new[i] &lt;- &quot;Fairly satisfied&quot;} else
+      if (x[i] == 3) {x_new[i] &lt;- &quot;Not very satisfied&quot;} else
+        if (x[i] == 4) {x_new[i] &lt;- &quot;Not satisfied at all&quot;} else
+        {x_new[i] &lt;- NA}
+}
+
+x_new &lt;- factor(x_new, levels = c(&quot;Very satisfied&quot;, &quot;Fairly satisfied&quot;, &quot;Not very satisfied&quot;, &quot;Not satisfied at all&quot;, NA))</code></pre>
+<pre class="r"><code>ggplot(data = new_data, aes(x = x_new, fill = x_new)) + 
+  geom_bar() + xlab(&quot;options&quot;) + labs(fill = &quot;options&quot;) +
+  geom_text(aes(
+    label = sprintf(&#39;%s (%.1f%%)&#39;, after_stat(count), after_stat(count / sum(count) * 100))),
+    stat=&#39;count&#39;, 
+    vjust = -1)</code></pre>
+<p><img src="/post/support_code_files/figure-html/plot-1.png" width="672" /></p>

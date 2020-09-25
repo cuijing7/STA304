@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.75.1" />
+
+
+<title>support code - Jingyi Cui&#39;s website</title>
+<meta property="og:title" content="support code - Jingyi Cui&#39;s website">
+
+
+  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/rstudio">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1 min read</span>
+    
+
+    <h1 class="article-title">support code</h1>
+
+    
+    <span class="article-date">0001-01-01</span>
+    
+
+    <div class="article-content">
+      
+
+
+<pre class="r"><code>get_ces(&quot;ces2019_phone&quot;)</code></pre>
+<pre><code>## TO CITE THIS SURVEY FILE:
+## 
+## - Stephenson, Laura B; Harell, Allison; Rubenson, Daniel; Loewen, Peter John, 2020, &#39;2019 Canadian Election Study - Phone Survey&#39;, https://doi.org/10.7910/DVN/8RHLG1, Harvard Dataverse, V1, UNF:6:eyR28qaoYlHj9qwPWZmmVQ== [fileUNF]
+## 
+## - Stephenson, Laura, Allison Harrel, Daniel Rubenson and Peter Loewen. Forthcoming. &#39;Measuring Preferences and Behaviour in the 2019 Canadian Election Study,&#39; Canadian Journal of Political Science.
+## 
+## LINK: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/8RHLG1</code></pre>
+<pre class="r"><code>data &lt;- ces2019_phone</code></pre>
+<pre class="r"><code>new_data &lt;- na.omit(data[, &quot;q13&quot;])
+glimpse(new_data)</code></pre>
+<pre><code>## Rows: 4,021
+## Columns: 1
+## $ q13 &lt;dbl+lbl&gt; 2, 2, 2, 2, 4, 4, 4, 2, 3, 2, 3, 3, 2, 2, 1, 2, 2, 2, 2, 2, 2…</code></pre>
+<pre class="r"><code>x &lt;- unlist(new_data, use.names = FALSE)
+x_new &lt;- &quot;&quot;
+
+for (i in 1:length(x)) {
+  if (x[i] == 1) {x_new[i] &lt;- &quot;Very satisfied&quot;} else
+    if (x[i] == 2) {x_new[i] &lt;- &quot;Fairly satisfied&quot;} else
+      if (x[i] == 3) {x_new[i] &lt;- &quot;Not very satisfied&quot;} else
+        if (x[i] == 4) {x_new[i] &lt;- &quot;Not satisfied at all&quot;} else
+        {x_new[i] &lt;- NA}
+}
+
+x_new &lt;- factor(x_new, levels = c(&quot;Very satisfied&quot;, &quot;Fairly satisfied&quot;, &quot;Not very satisfied&quot;, &quot;Not satisfied at all&quot;, NA))</code></pre>
+<pre class="r"><code>ggplot(data = new_data, aes(x = x_new, fill = x_new)) + 
+  geom_bar() + xlab(&quot;options&quot;) + labs(fill = &quot;options&quot;) +
+  geom_text(aes(
+    label = sprintf(&#39;%s (%.1f%%)&#39;, after_stat(count), after_stat(count / sum(count) * 100))),
+    stat=&#39;count&#39;, 
+    vjust = -1)</code></pre>
+<p><img src="/post/support_code_files/figure-html/plot-1.png" width="672" /></p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

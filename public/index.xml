@@ -13,8 +13,7 @@
       <pubDate>Thu, 24 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/09/24/problem-set-1/</guid>
-      <description>Abstract test
-Using the phone survey from 2019 Canadian Election Study, we investigated whether the participants are satisfied with the performance of the federal government under Justin Trudeau. By plotting the response of the quenstionaire, we discover that \(54.3\%\) of the participants is not satisfied with the performance. This suggests that Justin Trudeau will lost some votes in the new election.
+      <description>Abstract Using the phone survey from 2019 Canadian Election Study, we investigated whether the participants are satisfied with the performance of the federal government under Justin Trudeau. By plotting the response of the quenstionaire, we discover that \(54.3\%\) of the participants is not satisfied with the performance. This suggests that Justin Trudeau will lost some votes in the new election.
  Introduction We used the dataset of the phone survey from 2019 Canadian Election Study to investigate the satisfactory level of the adult Canadian citizens to the performance of the federal government under Justin Trudeau.</description>
     </item>
     
@@ -55,6 +54,15 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
       
       <guid>/2015/01/01/lorem-ipsum/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
+    </item>
+    
+    <item>
+      <title>support code</title>
+      <link>/1/01/01/support-code/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/1/01/01/support-code/</guid>
+      <description>get_ces(&amp;quot;ces2019_phone&amp;quot;) ## TO CITE THIS SURVEY FILE: ## ## - Stephenson, Laura B; Harell, Allison; Rubenson, Daniel; Loewen, Peter John, 2020, &amp;#39;2019 Canadian Election Study - Phone Survey&amp;#39;, https://doi.org/10.7910/DVN/8RHLG1, Harvard Dataverse, V1, UNF:6:eyR28qaoYlHj9qwPWZmmVQ== [fileUNF] ## ## - Stephenson, Laura, Allison Harrel, Daniel Rubenson and Peter Loewen. Forthcoming. &amp;#39;Measuring Preferences and Behaviour in the 2019 Canadian Election Study,&amp;#39; Canadian Journal of Political Science. ## ## LINK: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/8RHLG1 data &amp;lt;- ces2019_phone new_data &amp;lt;- na.</description>
     </item>
     
   </channel>

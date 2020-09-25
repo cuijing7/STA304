@@ -19,8 +19,6 @@ library(dplyr)
 
 # Abstract
 
-test
-
 Using the phone survey from 2019 Canadian Election Study, we investigated whether the participants are satisfied with the performance of the federal government under Justin Trudeau. By plotting the response of the quenstionaire, we discover that $54.3\%$ of the participants is not satisfied with the performance. This suggests that Justin Trudeau will lost some votes in the new election.
 
 # Introduction
@@ -100,6 +98,9 @@ The survey is conducted on 4021  Canadian adult citizens whi resident in one of 
 
 
 # Reference
+
+Supporting code and data availiable at https://github.com/cuijing7/STA304/blob/master/content/post/2020-09-24-problem-set-1.Rmd
+
 
 Stephenson, Laura B; Harell, Allison; Rubenson, Daniel; Loewen, Peter John, 2020, "2019 Canadian Election Study - Phone Survey Technical Report.pdf", 2019 Canadian Election Study - Phone Survey, https://doi.org/10.7910/DVN/8RHLG1/1PBGR3, Harvard Dataverse, V1
 
