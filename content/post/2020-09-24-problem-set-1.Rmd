@@ -1,0 +1,109 @@
+---
+title: "The majority of Canadian citizen is not satisfied with the performance of the federal government under Justin Trudeau"
+author: "Jingyi Cui"
+date: '2020-09-24'
+bibliography: "reference.bib"
+slug: problem-set-1
+categories: ["R"]
+tags: ["R Markdown", "plot"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(visdat)
+library(cesR)
+library(skimr)
+library(dplyr)
+```
+
+# Abstract
+
+Using the phone survey from 2019 Canadian Election Study, we investigated whether the participants are satisfied with the performance of the federal government under Justin Trudeau. By plotting the response of the quenstionaire, we discover that $54.3\%$ of the participants is not satisfied with the performance. This suggests that Justin Trudeau will lost some votes in the new election.
+
+# Introduction
+
+We used the dataset of the phone survey from 2019 Canadian Election Study to investigate the satisfactory level of the adult Canadian citizens to the performance of the federal government under Justin Trudeau. From the study, we find that the majority find the performance to be unsatisfactory.
+
+I used `tidyverse`(@citetidyverse) package to analyse and plot data. After extracting the one variable that we are focusing on, I replaced the numeric value to the corresponding text response and plotted the distribution. I grouped "Refused" and "Don't know" into one category - "NA", as these two answers don't have any preference and is not helpful for out study.
+
+Since the sampling population is significantly smaller than the target population, the accuracy of the study is not guaranteed. For further studies and more precise result, we should increase the sampling population and conduct a more detailed survey focusing on this topic.
+
+# Data
+
+The dataset we are using is the phone survey from 2019 Canadian Election Study. This study is to gather the Canadians’ attitudes and opinions during and after the 2019 federal election. 
+Our target population is all adult citizen of Canada, with our sampling population be 4021 of Canadian adult citizens who resident in one of ten Canadian provinces with landlines or wireless telephones. 
+Our sampling unit is one Canadian adult citizen. 
+Our frame is Canadian citizens of 18 years old or older who resident in one of ten Canadian provinces. 
+The method we use to sample our data is simple random sampling, random digit dialing to select the phone number, with the method of data collection are telephone interviews (Computer Assist Telephone Interview) and online surveys.
+The dataset is the numeric value of the response from the quanstionaire. 
+
+```{r results='hide', echo=FALSE}
+get_ces("ces2019_phone")
+data <- ces2019_phone
+```
+
+```{r echo=FALSE}
+new_data <- na.omit(data[, "q13"])
+glimpse(new_data)
+```
+
+Our interest from this survey is from question 13 of the questionnaire, which is whether the participants are satisfied with the performance of the federal government under Justin Trudeau.
+The dataset contains the numeric code of the resopnses to the quenstionaire by the following:\
+
+> 1 - Very satisfied
+
+> 2 - Fairly satisfied
+
+> 3 - Not really satisfied
+
+> 4 - Not satisfied at all
+
+> \-8 - Refused
+
+> \-9 - Don't know
+
+
+I used package `cesR`(@citecesR) to download dataset and `tidyverse`(@citetidyverse) to process data as well as plotting. The result is shown blow.
+
+```{r echo=FALSE, fig.width=8, fig.height=6}
+x <- unlist(new_data, use.names = FALSE)
+x_new <- ""
+
+for (i in 1:length(x)) {
+  if (x[i] == 1) {x_new[i] <- "Very satisfied"} else
+    if (x[i] == 2) {x_new[i] <- "Fairly satisfied"} else
+      if (x[i] == 3) {x_new[i] <- "Not very satisfied"} else
+        if (x[i] == 4) {x_new[i] <- "Not satisfied at all"} else
+        {x_new[i] <- NA}
+}
+
+x_new <- factor(x_new, levels = c("Very satisfied", "Fairly satisfied", "Not very satisfied", "Not satisfied at all", NA))
+
+ggplot(data = new_data, aes(x = x_new, fill = x_new)) + geom_bar() + xlab("options") +
+  geom_text(aes(
+    label = sprintf('%s (%.1f%%)', after_stat(count), after_stat(count / sum(count) * 100))),
+    stat='count', 
+    vjust = -1)
+
+```
+
+# Discussion
+
+From the graph, we notice that $4.7\%$ of the participants is verysatisfied with the performance of the federal government under Justin Trudeau, and $39.4\%$ of the participants is fairly satisfied. However, a majority of the participants find the performance of the government to be unsatisfactory with $29.1\%$ not very satisfied and $25.2\%$ not satisfied at all. Based on the result, we can see that although the most of the participant find they are fairly satisfied with the government's performance, overall it's performance under Justin Trudeau is below expectation.
+
+# Weakness and next step
+
+The survey is conducted on 4021  Canadian adult citizens whi resident in one of ten Canadian provinces with landlines or wireless telephones. Comparing to the 3 million adult population of Canada, it's only $0.134\%$ of the target population. Therefore the result of the survey may not reflect the true situation. To improve the accuracy, we can conduct a survey focusing on this topic and increase the sampling population size.
+
+
+# Reference
+
+Supporting code and data availiable at https://github.com/cuijing7/STA304/blob/master/content/post/support_code.Rmd
+
+JJ Allaire and Yihui Xie and Jonathan McPherson and Javier Luraschi and Kevin Ushey and Aron Atkins and Hadley Wickham and Joe Cheng and Winston Chang and Richard Iannone (2020). rmarkdown: Dynamic Documents for R. R package version 2.3. URL https://rmarkdown.rstudio.com. \
+Yihui Xie and J.J. Allaire and Garrett Grolemund (2018). R Markdown: The Definitive Guide. Chapman and Hall/CRC. ISBN 9781138359338. URL https://bookdown.org/yihui/rmarkdown.
+  
+Stephenson, Laura B; Harell, Allison; Rubenson, Daniel; Loewen, Peter John, 2020, "2019 Canadian Election Study - Phone Survey Technical Report.pdf", 2019 Canadian Election Study - Phone Survey, https://doi.org/10.7910/DVN/8RHLG1/1PBGR3, Harvard Dataverse, V1
+
+Stephenson, Laura B; Harell, Allison; Rubenson, Daniel; Loewen, Peter John, 2020, "2019 Canadian Election Study - Phone Survey", https://doi.org/10.7910/DVN/8RHLG1, Harvard Dataverse, V1, UNF:6:eyR28qaoYlHj9qwPWZmmVQ== [fileUNF]
