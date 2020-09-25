@@ -11,10 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r load_library}
 library(tidyverse)
-library(visdat)
 library(cesR)
-library(skimr)
-library(dplyr)
 ```
 
 ```{r load_data}
