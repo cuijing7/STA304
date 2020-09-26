@@ -10,10 +10,7 @@ tags: ["R Markdown", "plot"]
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
-library(visdat)
 library(cesR)
-library(skimr)
-library(dplyr)
 ```
 
 Jingyi Cui
