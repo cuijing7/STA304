@@ -3,7 +3,6 @@ title: "The majority of Canadian citizen is not satisfied with the performance o
 author: "Jingyi Cui"
 date: '2020-09-24'
 bibliography: "reference.bib"
-slug: problem-set-1
 categories: ["R"]
 tags: ["R Markdown", "plot"]
 ---
@@ -16,6 +15,8 @@ library(cesR)
 library(skimr)
 library(dplyr)
 ```
+
+Jingyi Cui
 
 # Abstract
 
